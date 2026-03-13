@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using DoctorService.Utils.Common;
 using DoctorService.InternalModels.DTOs;
 using DoctorService.Services;
 
 namespace DoctorService.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/doctors")]
 public class DoctorsController : ControllerBase
