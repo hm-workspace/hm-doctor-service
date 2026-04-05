@@ -30,7 +30,7 @@ builder.Services.AddAuthorization();
 
 builder.Services.AddControllers();
 builder.Services.AddScoped<IDbConnectionFactory, SqlConnectionFactory>();
-builder.Services.AddScoped<IDoctorRepository, DapperDoctorRepository>();
+builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
 builder.Services.AddScoped<IDoctorService, DoctorService.Services.DoctorService>();
 
 builder.Services.AddEndpointsApiExplorer();
@@ -59,6 +59,11 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
 app.UseSwagger(options =>
 {
     options.RouteTemplate = "api/doctors/swagger/{documentName}/swagger.json";
@@ -78,6 +83,7 @@ app.MapControllers();
 app.MapGet("/health", () => Results.Ok());
 
 app.Run();
+
 
 
 

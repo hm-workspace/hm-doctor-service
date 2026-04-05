@@ -5,11 +5,11 @@ using DoctorService.Utils.Common;
 
 namespace DoctorService.Repository;
 
-public class DapperDoctorRepository : IDoctorRepository
+public class DoctorRepository : IDoctorRepository
 {
     private readonly IDbConnectionFactory _connectionFactory;
 
-    public DapperDoctorRepository(IDbConnectionFactory connectionFactory)
+    public DoctorRepository(IDbConnectionFactory connectionFactory)
     {
         _connectionFactory = connectionFactory;
     }
