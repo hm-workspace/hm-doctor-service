@@ -2,6 +2,11 @@
 
 namespace DoctorService.InternalModels.DTOs;
 
+public enum UserRole
+{
+    Doctor,
+}
+
 public class CreateDoctorDto
 {
     public string DoctorId { get; set; } = string.Empty;
@@ -16,6 +21,22 @@ public class CreateDoctorDto
 
 public class UpdateDoctorDto : CreateDoctorDto
 {
+    public bool IsActive { get; set; } = true;
+}
+
+public class CreateDoctorWithUserDto
+{
+    public string DoctorId { get; set; } = string.Empty;
+    public int? UserId { get; set; }
+    public string Username { get; set; } = string.Empty;
+    public string Password { get; set; } = string.Empty;
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+    public string Specialization { get; set; } = string.Empty;
+    public string Email { get; set; } = string.Empty;
+    public string Phone { get; set; } = string.Empty;
+    public string Role { get; set; } = UserRole.Doctor.ToString();
+    public int YearsOfExperience { get; set; }
     public bool IsActive { get; set; } = true;
 }
 

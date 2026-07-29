@@ -13,6 +13,7 @@ public interface IDoctorService
     Task<ApiResponse<IEnumerable<string>>> GetSpecializationsAsync();
     Task<ApiResponse<string>> GenerateDoctorIdAsync();
     Task<ApiResponse<DoctorDto>> CreateDoctorAsync(CreateDoctorDto createDoctorDto);
+    Task<ApiResponse<DoctorDto>> CreateDoctorWithUserAsync(CreateDoctorWithUserDto createDoctorWithUserDto, string? authorizationHeader, CancellationToken cancellationToken = default);
     Task<ApiResponse<DoctorDto>> UpdateDoctorAsync(int id, UpdateDoctorDto updateDoctorDto);
     Task<ApiResponse<string>> DeleteDoctorAsync(int id);
 }

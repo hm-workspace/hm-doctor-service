@@ -86,7 +86,18 @@ public class DoctorRepository : BaseRepository, IDoctorRepository
     {
         var id = await ExecuteScalarAsync<int>(
             StoredProcedureNames.CreateDoctor,
-            doctor,
+            new
+            {
+                doctor.DoctorId,
+                doctor.UserId,
+                doctor.FirstName,
+                doctor.LastName,
+                doctor.Specialization,
+                doctor.Email,
+                doctor.Phone,
+                YearsOfExperience = doctor.YearsOfExperience,
+                IsActive = doctor.IsActive
+            },
             commandType: CommandType.StoredProcedure);
 
         doctor.Id = id;

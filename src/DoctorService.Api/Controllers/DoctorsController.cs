@@ -70,6 +70,16 @@ public class DoctorsController : ControllerBase
         return CreatedAtAction(nameof(GetDoctor), new { id = result.Data?.Id ?? 0 }, result);
     }
 
+    [HttpPost("with-user")]
+    public async Task<ActionResult<ApiResponse<DoctorDto>>> CreateDoctorWithUser([FromBody] CreateDoctorWithUserDto createDoctorWithUserDto, CancellationToken cancellationToken)
+    {
+        var authorizationHeader = Request.Headers.Authorization.ToString();
+        var result = await _doctorService.CreateDoctorWithUserAsync(createDoctorWithUserDto, authorizationHeader, cancellationToken);
+        return result.Success
+            ? CreatedAtAction(nameof(GetDoctor), new { id = result.Data?.Id ?? 0 }, result)
+            : BadRequest(result);
+    }
+
     [HttpPut("{id:int}")]
     public async Task<ActionResult<ApiResponse<DoctorDto>>> UpdateDoctor(int id, [FromBody] UpdateDoctorDto updateDoctorDto)
     {
